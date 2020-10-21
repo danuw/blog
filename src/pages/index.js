@@ -23,6 +23,7 @@ export default Index;
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(
+      filter: {frontmatter:{preview:{ne:true}}}
       limit: 2000
       sort: { fields: [fields___date], order: DESC }
     ) {
