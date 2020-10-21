@@ -10,7 +10,7 @@ const config = {
   siteDescription: "A basic technical blog by Dan Benitah", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "1825356251115265", // FB Application ID for using app insights
-  googleAnalyticsID: "UA-47311644-5", // GA tracking ID.
+  googleAnalyticsID: "G-5FCSTKGNN9", // GA tracking ID.
   dateFromFormat: "YYYY-MM-DD", // Date format used in the frontmatter.
   dateFormat: "DD/MM/YYYY", // Date format for display.
   userName: "Dan Benitah", // Username to display in the author segment.
