@@ -5,12 +5,12 @@ const config = {
   siteTitleShort: "Basic technical blog", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
   siteTitleAlt: "Dan Benitah", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
-  siteUrl: "https://danbenitah.netlify.com/", // Domain of your website without pathPrefix.
+  siteUrl: "https://www.danuw.com/", // Domain of your website without pathPrefix.
   pathPrefix: "", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
   siteDescription: "A basic technical blog by Dan Benitah", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteFBAppID: "1825356251115265", // FB Application ID for using app insights
-  googleAnalyticsID: "G-5FCSTKGNN9", // GA tracking ID.
+  googleAnalyticsID: "UA-181020407-1", // GA tracking ID.
   dateFromFormat: "YYYY-MM-DD", // Date format used in the frontmatter.
   dateFormat: "DD/MM/YYYY", // Date format for display.
   userName: "Dan Benitah", // Username to display in the author segment.
