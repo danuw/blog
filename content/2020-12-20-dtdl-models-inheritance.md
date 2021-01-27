@@ -13,20 +13,18 @@ tags:
     - documentation
 ---
 
-[Digital Twin Language Definition (DTDL)](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/dtdlv2.md) is brilliant and helps standardise how to create your twin models and how they relate to each other. How about using it also to generate documentation in combination with mermaid?
+[Digital Twin Language Definition (DTDL)](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/dtdlv2.md) is brilliant and helps standardize how to create your twin models and how they relate to each other. How about using it also to generate documentation in combination with mermaid?
 
-[Mermaid](https://mermaid-js.github.io/mermaid/#/) "lets you represent diagrams using text and code". It makes it very easy to generate from what you are doing. Take a look at the samples in the [online editor](https://mermaid-js.github.io/mermaid-live-editor/#/edit).
+[Mermaid](https://mermaid-js.github.io/mermaid/#/) "lets you represent diagrams using text and code". It makes it very easy to generate from what you are doing. Take a look at the samples in the [online editor](https://mermaid-js.github.io/mermaid-live-editor/) for reference.
 
-I first heard of mermaid in the Azure DevOps context.
-
-I first started using the mermaid _flow chart_ to represent the twin graphs we would generate/import (a bit like what ADT Explorer ended up doing really well). 
+I first heard of mermaid in the Azure DevOps context, but I really first started getting value out of it, by using the mermaid _flow chart_ to represent the digital twin graphs we would generate through an import process. We would therefore get visual confirmation of what had been imported (a bit like what [ADT Explorer](https://docs.microsoft.com/en-us/samples/azure-samples/digital-twins-explorer/digital-twins-explorer/) is now used for). 
 
 ![Default sample from the mermaid editor](./images/2020-12-20-dtdl-inheritance-graph/mermaid-classdiagram-example.png)
 
-However, I recently wondered how I could document the hierarchy I had in my Models folders alongside with the code, and got inspired by the _class diagram_ this time.
-That would help visualise the inheritance (through DTDL extends), and likely the main properties they would each bring as part of their extendability.
+However, I recently wondered how I could document the hierarchy I had in my _/Models_ folders alongside with the code, and got inspired by the _class diagram_ type of diagrams this time.
+That would help visualise the inheritance (through DTDL's _extends_ property), and likely the main properties each model would each bring as part of their extendability.
 
-DTDL defines that you can extend with up to 2 interface at thhe tim eof writing.
+DTDL defines that you can extend with up to 2 interface at the time of writing.
 
 ![Example of just extracting the extend properties to model inheritance from the ADT Explorer's examples](./images/2020-12-20-dtdl-inheritance-graph/extends-example.png)
 
@@ -59,7 +57,7 @@ dotnet new console
 dotnet add package Newtonsoft.Json
 ```
 
-### (optionaly) Make sure it all compiles and carry on...
+### (optionally) Make sure it all compiles and carry on...
 ```
 dotnet build
 ```
@@ -104,9 +102,9 @@ Using a combination of your models you may end up with the following classes usi
 
 ## Extract the data in a mermaid format
 
-Looking back at the examples, we can cconstruct that graph using theh following steps:
+Looking back at the examples, we can construct that graph using the following steps:
  1. start with `classDiagram` and subsequently use correct indentation for the connections
- 2. Inheritance connections for classes (which we will use for DTDL interfaces) are represented with this `Class1 <|-- Class2` as in `Vehicule <|-- Car` or `Animal <|-- Chicken`
+ 2. Inheritance connections for classes (which we will use for DTDL interfaces) are represented with this pattern `Class1 <|-- Class2` as in `Vehicule <|-- Car` or `Animal <|-- Chicken`
  3. Properties use this pattern `Class1 : +PropertyType PropertyName` such as `Vehicule : +Integer NumberOfWheeels`
  4. Methods (which we will use for relationships) use this pattern `Class1 : +MethodName()` such as `Vehicule : +MoveForward()` and in our case `Building : +contains()`
 
@@ -181,7 +179,7 @@ static void Main(string[] args)
     var mermaidPath = Path.Combine(currentDir, "mermaid.mmd");
     Console.WriteLine(mermaidPath);
 
-    // output all theh recorded connections to create a mermaid graph of the relationships
+    // output all the recorded connections to create a mermaid graph of the relationships
     var mermaid = sb.ToString() + sbProps.ToString();
     Console.WriteLine(mermaid);
 
@@ -192,13 +190,13 @@ static void Main(string[] args)
 }
   
 ```
-Above, we only differentiate between Property and RelationShip in contents. I may in the future use start to differentiate between _Property_ and _Telemetry_ as this is easily missed difference at first.
+Above, we only differentiate between _Property_ and _RelationShip_ in contents. I may in the future, start to differentiate between _Property_ and _Telemetry_ as this is easily missed difference at first.
 
 Finally, model id characters are not accepted so here we are simplifying the names by removing the domains and keeping the version, but this should be adapted to the complexity of your scenario.
 
 ```csharp
     static string GetName(string id){
-        var position = id.LastIndexOf(":");// I believe that charater is mandatory so no extra check needed here
+        var position = id.LastIndexOf(":");// I believe that charater is mandatory so no extra check needed here to ensure it does not fail (safe assumption)
         id = id.Substring(position+1);// removing the domain info from id
         return id.Replace(";", "");// removing the ';'and keeping the version
     }
@@ -208,9 +206,9 @@ Find the complete code at [https://github.com/danuw/AdtGraphModel](https://githu
 
 ## Convert to diagram
 
-Finally, visualise the converted diagram using some of the many options such as [mermaid-cli](https://github.com/mermaid-js/mermaid-cli), or one of the mainy previewing extensions in VS code for example. An easy one remains the [online editor at https://mermaid-js.github.io/mermaid-live-editor/](https://mermaid-js.github.io/mermaid-live-editor/), although I think the [npx version of the cli](https://github.com/mermaid-js/mermaid-cli#run-with-npx) (to install packages and execute on the fly), to create a transparent svg and/or complete the automation of getting your relashionships into a diagram, feels like a better long term option.
+Finally, visualise the converted diagram using some of the many options such as [mermaid-cli](https://github.com/mermaid-js/mermaid-cli), or one of the mainly previewing extensions in VS code for example. An easy one remains the [online editor at https://mermaid-js.github.io/mermaid-live-editor/](https://mermaid-js.github.io/mermaid-live-editor/). You can also use the npm package ([try npx version of the cli for a quick and clutter free test](https://github.com/mermaid-js/mermaid-cli#run-with-npx) to install packages and execute on the fly), to generate a transparent svg and/or complete the automation of getting your relationships into a diagram locally.
 
-# Finaly...
+# Finally...
 Whether you were asked, or you simply needed it for yourself, this should now give you a great way to document your models going forward.
 
 This is especially useful when you want to make some updates and refactor/refine models' inheritance and/or properties.
