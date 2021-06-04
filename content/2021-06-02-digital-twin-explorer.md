@@ -1,8 +1,8 @@
 ---
 date: 2021-06-02
 title: 'Azure Digital Twins (ADT) Explorer'
-thumbnail: ''
-cover: ""
+thumbnail: "./images/2021-06-02-adt-explorer/model-graph.png"
+cover: "./images/2021-06-02-adt-explorer/model-graph.png"
 categories: 
     - iot projects
 tags: 
@@ -10,7 +10,7 @@ tags:
     - azure iot
     - azure digital twins (adt)
     - smart building
-    - documentation
+    - adt explorer
 ---
 
 Since last summer, a great tool was made available to easily browse Azure Digital Twins v2's graph called the ADT Explorer.
@@ -36,6 +36,16 @@ I am really excited about how these new features will improve my productivity an
 
 Be sure to keep an eye on the [enhancement requests](https://github.com/Azure-Samples/digital-twins-explorer/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) and/or contribute for these to come to life faster :)
 
+One more things...
+
+![Unauthorised error...](./images/2021-06-02-adt-explorer/unauthorised.png)
+![... and an empty list of directories for your (live?) account](./images/2021-06-02-adt-explorer/directories.png)
+
+In the event you get an unauthorized error and are not able to change the directory (blank list) as shown below, there is currently a work around by using the following URL format:
+
+```shell
+https://explorer.digitaltwins.azure.net/?tid=<TENANT_ID>&eid=<ADT_HOSTNAME>
+```
 
 ### References:
 - https://explorer.digitaltwins.azure.net/
